@@ -1,7 +1,8 @@
 {
   "name": "backend-course",
   "version": "1.0.0",
-  "main": "index.js",
+  "type": "module",
+  "main": "src/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon src/server"
@@ -16,7 +17,9 @@
     "express": "^5.2.1"
   },
   "devDependencies": {
+    "@prisma/adapter-pg": "^7.7.0",
     "nodemon": "^3.1.11",
+    "pg": "^8.20.0",
     "prisma": "^7.6.0"
   }
 }
