@@ -13,6 +13,10 @@ const app = express();
 
 const PORT = 5001;
 
+// middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 // api routes
 app.use("/movies", movieRoutes);
 app.use("/auth", authRoutes);
