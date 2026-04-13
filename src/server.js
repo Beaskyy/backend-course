@@ -1,21 +1,21 @@
+import "dotenv/config";
 import express from "express";
-import { config } from "dotenv";
 
 // import routes
 import movieRoutes from "./routes/movieRoutes.js";
 import authRoutes from "./routes/authRoute.js";
 import { connectDB, disconnectDB } from "./config/db.js";
 
-config();
-connectDB();
-
 const app = express();
-
-const PORT = 5001;
 
 // middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+connectDB();
+
+
+const PORT = 5001;
 
 // api routes
 app.use("/movies", movieRoutes);
@@ -41,9 +41,9 @@ process.on("unhandledRejection", (error) => {
 // Handle uncaught exceptions
 process.on("uncaughtException", async (error) => {
   console.error("Uncaught Exception", error);
-    await disconnectDB()
-    process.exit(1);
-  });
+  await disconnectDB();
+  process.exit(1);
+});
 
 // Graceful shutdown
 process.on("SIGTERM", async () => {
